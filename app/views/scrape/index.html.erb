@@ -13,7 +13,10 @@
             type: 'GET',
             data: {'urls': text},
             success: function(result, status, xhr) {
-                $('#result').text(result);
+                $('#result').html(result);
+            },
+            error: function(xhr, status, error) {
+                $('#result').text(error);
             },
             complete: function(xhr, status) {
                 document.body.style.cursor = 'auto';
