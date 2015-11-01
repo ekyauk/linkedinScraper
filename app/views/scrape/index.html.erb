@@ -6,13 +6,14 @@
     $('#submit_button').click(function() {
         var text = $('textarea#urls').val();
          $('textarea#urls').val("");
+         $('#result').text("Please wait...");
         document.body.style.cursor = 'wait';
         $.ajax({
             url: '/view',
             type: 'GET',
             data: {'urls': text},
             success: function(result, status, xhr) {
-                $('#result').append(result);
+                $('#result').text(result);
             },
             complete: function(xhr, status) {
                 document.body.style.cursor = 'auto';
