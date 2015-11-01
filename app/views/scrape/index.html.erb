@@ -3,15 +3,18 @@
 <div id='result'></div>
 <script>
     $('#submit_button').click(function() {
-        console.log('button clicked');
         var text = $('textarea#urls').val();
+         $('textarea#urls').val("");
+        document.body.style.cursor = 'wait';
         $.ajax({
             url: '/view',
             type: 'GET',
             data: {'urls': text},
             success: function(result, status, xhr) {
-                console.log(text);
                 $('#result').append(result);
+            },
+            complete: function(xhr, status) {
+                document.body.style.cursor = 'auto';
             }
         });
     });
