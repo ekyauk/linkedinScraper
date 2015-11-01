@@ -10,7 +10,9 @@ class ScrapeController < ApplicationController
         @profile_table = []
         for url in urls
             profile = Linkedin::Profile.get_profile(url)
-            puts profile.education
+            if profile == nil
+                next
+            end
             name = profile.name.empty? == nil ? profile.first_name + ' ' + profile.last_name : profile.name
             if !profile.education.empty?
                 for education_info in profile.education
