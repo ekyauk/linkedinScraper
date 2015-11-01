@@ -1,4 +1,4 @@
-require_relative "../../linkedin-scraper/lib/linkedin_scraper.rb"
+require_relative "../../linkedin-scraper/lib/linkedin-scraper.rb"
 
 class ScrapeController < ApplicationController
 
