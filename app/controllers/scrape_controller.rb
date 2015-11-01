@@ -41,7 +41,7 @@ private
     end
 
     def company_line(name, company_info)
-        return [name, 'Employment', nil, nil, nil, company_info[:company], company_info[:title], company_info[:industry], company_info[:start_date].to_s, company_info[:end_date].to_s]
+        return [name, 'Employment', nil, nil, nil, company_info[:company], company_info[:title], company_info[:industry], company_info[:linkedin_company_url], company_info[:company_size], company_info[:start_date].to_s, company_info[:end_date].to_s]
     end
 
 end
