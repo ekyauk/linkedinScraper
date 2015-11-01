@@ -1,0 +1,18 @@
+<%= text_area_tag 'urls', nil, placeholder: 'Type in the LinkedIn profile URLs here. Separate each new URL with a new line.', cols: 75, rows: 20 %></br>
+<%= button_tag 'Process', id: 'submit_button' %>
+<div id='result'></div>
+<script>
+    $('#submit_button').click(function() {
+        console.log('button clicked');
+        var text = $('textarea#urls').val();
+        $.ajax({
+            url: '/view',
+            type: 'GET',
+            data: {'urls': text},
+            success: function(result, status, xhr) {
+                console.log(text);
+                $('#result').append(result);
+            }
+        });
+    });
+</script>
