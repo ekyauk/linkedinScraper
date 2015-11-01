@@ -1,4 +1,4 @@
-require_relative "../../linkedin-scraper/lib/linkedin-scraper.rb"
+require File.dirname(__FILE__) + "/../../linkedin-scraper/lib/linkedin-scraper.rb"
 
 class ScrapeController < ApplicationController
 
