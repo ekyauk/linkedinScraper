@@ -1,3 +1,5 @@
+require_relative "../../linkedin-scraper/lib/linkedin_scraper.rb"
+
 class ScrapeController < ApplicationController
 
     def index
@@ -8,10 +10,11 @@ class ScrapeController < ApplicationController
         @profile_table = []
         for url in urls
             profile = Linkedin::Profile.get_profile(url)
+            puts profile.education
             name = profile.name.empty? == nil ? profile.first_name + ' ' + profile.last_name : profile.name
             if !profile.education.empty?
                 for education_info in profile.education
-                    @profile_table << education_line(name, education_info[:name], education_info[:degree])
+                    @profile_table << education_line(name, education_info)
                 end
             end
 
@@ -27,15 +30,16 @@ class ScrapeController < ApplicationController
                 end
             end
         end
+        render partial: 'profile_table'
     end
 
 private
-    def education_line(name, school, degree)
-        return [name, 'Degree', school, degree]
+    def education_line(name, education_info)
+        return [name, 'Degree', education_info[:degree], education_info[:major], education_info[:name]]
     end
 
     def company_line(name, company_info)
-        return [name, 'Employment', nil, nil, company_info[:company], company_info[:title], company_info[:start_date].to_s, company_info[:end_date].to_s]
+        return [name, 'Employment', nil, nil, nil, company_info[:company], company_info[:title], company_info[:industry], company_info[:start_date].to_s, company_info[:end_date].to_s]
     end
 
 end
