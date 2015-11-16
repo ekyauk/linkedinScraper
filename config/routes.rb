@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'scrape#index'
-
+  get '/login', to: 'scrape#login'
+  get '/callback', to: 'scrape#callback'
   get 'view' => 'scrape#view'
 
   # Example of regular route:
